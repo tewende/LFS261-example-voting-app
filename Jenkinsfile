@@ -9,7 +9,7 @@ pipeline {
                 sleep 3
             }
         }
-        state('two'){
+        stage('two'){
             steps {
                 echo 'step 2'
                 sleep 9
