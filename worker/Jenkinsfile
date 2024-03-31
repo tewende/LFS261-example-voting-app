@@ -23,7 +23,7 @@ pipeline {
         stage('package') {
             steps {
                 echo 'Packaging worker app'
-                dir() {
+                dir('worker') {
                     sh 'mvn package'
                 }
             }
