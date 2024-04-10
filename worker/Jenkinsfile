@@ -41,6 +41,18 @@ pipeline {
                 }
             }
         }
+        stage('docker-package') {
+            steps {
+                echo 'Packaging worker app with docker'
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
+			def workerImage = docker.build("tewende/worker:v${env.BUILD_ID}", "./ worker")
+			workerImage.push()
+			workerImage.push("latest")
+                    }
+                }
+            }
+        }
     }
     post {
         always {
